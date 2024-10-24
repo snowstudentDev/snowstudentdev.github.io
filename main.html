@@ -75,11 +75,21 @@
             padding: 20px;
             border-radius: 8px;
             text-align: center;
+            width: 300px;
         }
         .modal-content input {
             width: 100%;
             margin: 10px 0;
             padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .iframe-container {
+            width: 100%;
+            height: 500px;
+            margin-top: 20px;
+            border: none;
+            display: none; /* Hidden by default */
         }
     </style>
 </head>
@@ -98,26 +108,9 @@
 
 <main>
     <section class="game-section" id="gameSection">
-        <div class="game-card">
-            <img src="game1.jpg" alt="Game 1">
-            <h3>Game Title 1</h3>
-            <p>Action, Adventure</p>
-            <a href="#" style="color: #1abc9c;">Play Now</a>
-        </div>
-        <div class="game-card">
-            <img src="game2.jpg" alt="Game 2">
-            <h3>Game Title 2</h3>
-            <p>Strategy, Puzzle</p>
-            <a href="#" style="color: #1abc9c;">Play Now</a>
-        </div>
-        <div class="game-card">
-            <img src="game3.jpg" alt="Game 3">
-            <h3>Game Title 3</h3>
-            <p>RPG, Fantasy</p>
-            <a href="#" style="color: #1abc9c;">Play Now</a>
-        </div>
-        <!-- Add more game cards as needed -->
+        <!-- Game cards will be dynamically added here -->
     </section>
+    <iframe id="gameIframe" class="iframe-container" src=""></iframe>
 </main>
 
 <footer>
@@ -146,13 +139,34 @@
 </div>
 
 <script>
+    const adminPassword = 'admin123'; // Replace with your admin password
+
+    // Load games from localStorage
+    function loadGames() {
+        const games = JSON.parse(localStorage.getItem('games')) || [];
+        const gameSection = document.getElementById('gameSection');
+        gameSection.innerHTML = ''; // Clear existing games
+
+        games.forEach(game => {
+            const newGameCard = document.createElement('div');
+            newGameCard.className = 'game-card';
+            newGameCard.innerHTML = `
+                <img src="${game.image}" alt="${game.title}">
+                <h3>${game.title}</h3>
+                <p>New Game</p>
+                <a href="#" onclick="openIframe('${game.url}')" style="color: #1abc9c;">Play Now</a>
+            `;
+            gameSection.appendChild(newGameCard);
+        });
+    }
+
     function openAdminModal() {
         document.getElementById('adminModal').style.display = 'flex';
     }
 
     function loginAdmin() {
         const password = document.getElementById('adminPassword').value;
-        if (password === '4153') { // Replace with your admin password
+        if (password === adminPassword) {
             document.getElementById('adminModal').style.display = 'none';
             document.getElementById('addGameModal').style.display = 'flex';
         } else {
@@ -166,16 +180,11 @@
         const image = document.getElementById('gameImage').value;
 
         if (title && url && image) {
-            const gameSection = document.getElementById('gameSection');
-            const newGameCard = document.createElement('div');
-            newGameCard.className = 'game-card';
-            newGameCard.innerHTML = `
-                <img src="${image}" alt="${title}">
-                <h3>${title}</h3>
-                <p>New Game</p>
-                <a href="${url}" style="color: #1abc9c;">Play Now</a>
-            `;
-            gameSection.appendChild(newGameCard);
+            const games = JSON.parse(localStorage.getItem('games')) || [];
+            games.push({ title, url, image }); // Add new game to the array
+            localStorage.setItem('games', JSON.stringify(games)); // Save to localStorage
+            
+            loadGames(); // Reload games to display
             document.getElementById('addGameModal').style.display = 'none'; // Close the modal
             // Clear the input fields
             document.getElementById('gameTitle').value = '';
@@ -183,6 +192,15 @@
             document.getElementById('gameImage').value = '';
         }
     }
+
+    function openIframe(url) {
+        const iframe = document.getElementById('gameIframe');
+        iframe.src = url;
+        iframe.style.display = 'block'; // Show the iframe
+    }
+
+    // Load games on page load
+    window.onload = loadGames;
 </script>
 
 </body>
