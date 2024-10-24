@@ -7,12 +7,14 @@
     <style>
         body {
             margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: azure;
+        }
+        .wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: azure;
-            font-family: Arial, sans-serif;
             position: relative;
             transition: filter 0.3s;
         }
@@ -22,21 +24,20 @@
         .login-container {
             text-align: center;
             background: white;
-            padding: 15px; /* Reduced padding */
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 250px; /* Adjusted width */
         }
         .login-container input {
-            padding: 8px; /* Reduced padding */
-            margin: 8px 0; /* Reduced margin */
+            padding: 10px;
+            margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 4px;
             width: 100%;
             box-sizing: border-box;
         }
         .login-container button {
-            padding: 8px; /* Reduced padding */
+            padding: 10px;
             background-color: #007BFF;
             color: white;
             border: none;
@@ -54,15 +55,10 @@
             background-color: #1abc9c;
             color: white;
             border: none;
-            padding: 8px 12px; /* Reduced padding */
+            padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 14px; /* Reduced font size */
-        }
-        .disclaimer {
-            font-size: 0.9em;
-            color: #bdc3c7;
-            margin-top: 15px;
+            font-size: 16px;
         }
         .popup {
             display: flex;
@@ -85,7 +81,7 @@
         }
         .close-button {
             margin-top: 15px;
-            padding: 8px; /* Reduced padding */
+            padding: 10px;
             background-color: #e74c3c;
             color: white;
             border: none;
@@ -97,12 +93,13 @@
 <body>
     <button class="teacher-button" onclick="Teacher()">Click if You're a Teacher</button>
 
-    <div class="login-container">
-        <h2>Enter PIN Code</h2>
-        <input type="password" id="pinInput" placeholder="Enter 4-digit PIN" maxlength="4">
-        <button onclick="validatePin()">Launch!</button>
-        <button onclick="teacher2()">Show Disclaimer</button>
-        <p class="disclaimer">Disclaimer: Don't play this in class!!! If you do and you get in trouble, then it's not my fault!!!</p>
+    <div class="wrapper">
+        <div class="login-container">
+            <h2>Enter PIN Code</h2>
+            <input type="password" id="pinInput" placeholder="Enter 4-digit PIN" maxlength="4">
+            <button onclick="validatePin()">Launch!</button>
+            <button onclick="teacher2()">Show Disclaimer</button>
+        </div>
     </div>
 
     <script>
@@ -116,12 +113,12 @@
         }
 
         function Teacher() {
-            alert("There is a disclaimer: it is not my fault!!!");
+            alert("There is a disclaimer; it is not my fault!!!");
         }
 
         function teacher2() {
             // Blur the background
-            document.body.classList.add('blur');
+            document.querySelector('.wrapper').classList.add('blur');
             // Create the popup
             const popup = document.createElement('div');
             popup.className = 'popup';
@@ -137,7 +134,7 @@
 
         function closePopup() {
             // Remove blur from background
-            document.body.classList.remove('blur');
+            document.querySelector('.wrapper').classList.remove('blur');
             // Remove the popup
             const popup = document.querySelector('.popup');
             if (popup) {
