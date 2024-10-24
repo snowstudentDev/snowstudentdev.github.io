@@ -1,13 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HTML 5 Boilerplate</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <script src="index.js"></script>
-  </body>
+    <title>Launcher!!!      </title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: azure;
+            font-family: Arial, sans-serif;
+        }
+        .login-container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .login-container input {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .login-container button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .login-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Enter PIN Code</h2>
+        <input type="password" id="pinInput" placeholder="Enter 4-digit PIN" maxlength="4">
+        <button onclick="validatePin()">Launch!</button>
+    </div>
+
+    <script>
+        function validatePin() {
+            const pin = document.getElementById('pinInput').value;
+            if (pin === '3541') { // Example PIN code
+                openLink();
+            } else {
+                alert('Invalid PIN. Please try again.');
+            }
+        }
+
+        function openLink() {
+            var newWindow = window.open('about:blank', '_blank');
+            newWindow.document.write(`
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <title>Snowrider 3D</title>
+                    <style>
+                        body { margin: 0; }
+                        iframe { width: 100vw; height: 100vh; border: none; }
+                    </style>
+                </head>
+                <body>
+                    <iframe src="HomeWork (1).html"></iframe>
+                </body>
+                </html>
+            `);
+            newWindow.document.close(); // Close the document to render the content
+        }
+    </script>
+</body>
 </html>
