@@ -14,6 +14,10 @@
             background-color: azure;
             font-family: Arial, sans-serif;
             position: relative;
+            transition: filter 0.3s;
+        }
+        .blur {
+            filter: blur(4px);
         }
         .login-container {
             text-align: center;
@@ -59,6 +63,34 @@
             color: #bdc3c7;
             margin-top: 15px;
         }
+        .popup {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+        .popup-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 300px;
+        }
+        .close-button {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -68,7 +100,6 @@
         <h2>Enter PIN Code</h2>
         <input type="password" id="pinInput" placeholder="Enter 4-digit PIN" maxlength="4">
         <button onclick="validatePin()">Launch!</button>
-        <p class="disclaimer">Disclaimer: Dont play this in class!!! if you do and you get in trouble then its not my fault!!! </p>
     </div>
 
     <script>
@@ -81,9 +112,36 @@
             }
         }
 
-        function Teacher(){
-            alert("There is a disclamer it is not my fault!!!")
+        function Teacher() {
+            alert("There is a disclamer it is not my fault!!!");
         }
+
+        function teacher2() {
+            // Blur the background
+            document.body.classList.add('blur');
+            // Create the popup
+            const popup = document.createElement('div');
+            popup.className = 'popup';
+            popup.innerHTML = `
+                <div class="popup-content">
+                    <h3>Disclaimer</h3>
+                    <p>Don't play this in class!!! If you do and you get in trouble, then it's not my fault!!!</p>
+                    <button class="close-button" onclick="closePopup()">Close</button>
+                </div>
+            `;
+            document.body.appendChild(popup);
+        }
+
+        function closePopup() {
+            // Remove blur from background
+            document.body.classList.remove('blur');
+            // Remove the popup
+            const popup = document.querySelector('.popup');
+            if (popup) {
+                document.body.removeChild(popup);
+            }
+        }
+
         function openLink() {
             var newWindow = window.open('about:blank', '_blank');
             newWindow.document.write(`
