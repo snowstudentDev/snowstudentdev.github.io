@@ -9,6 +9,7 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: azure;
+            position: relative;
         }
         .wrapper {
             display: flex;
@@ -88,6 +89,13 @@
             border-radius: 4px;
             cursor: pointer;
         }
+        .version {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 12px;
+            color: #333;
+        }
     </style>
 </head>
 <body>
@@ -102,7 +110,14 @@
         </div>
     </div>
 
+    <div class="version" id="versionNumber"></div>
+
     <script>
+        // Increment and display version number
+        let version = localStorage.getItem('version') ? parseInt(localStorage.getItem('version')) + 1 : 1;
+        localStorage.setItem('version', version);
+        document.getElementById('versionNumber').innerText = `Version: ${version}`;
+
         function validatePin() {
             const pin = document.getElementById('pinInput').value;
             if (pin === '3541') { // Example PIN code
