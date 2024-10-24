@@ -1,185 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bio Site</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: azure;
-            overflow: hidden; /* Prevent scrolling during blur effect */
-        }
-        .wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            position: relative;
-            transition: filter 0.3s;
-        }
-        .blur {
-            filter: blur(4px);
-            animation: swirl 0.3s forwards;
-        }
-        @keyframes swirl {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-        .login-container {
-            text-align: center;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        .login-container input {
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .login-container button {
-            padding: 8px; /* Smaller buttons */
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            transition: background-color 0.3s;
-        }
-        .login-container button:hover {
-            background-color: #0056b3;
-        }
-        .teacher-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: #1abc9c;
-            color: white;
-            border: none;
-            padding: 8px 12px; /* Smaller size */
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .popup {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-        }
-        .popup-content {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            width: 300px;
-        }
-        .close-button {
-            margin-top: 15px;
-            padding: 8px;
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <button class="teacher-button" onclick="Teacher()">Click if You're a Teacher</button>
-
-    <div class="wrapper">
-        <div class="login-container">
-            <h2>Enter PIN Code</h2>
-            <input type="password" id="pinInput" placeholder="Enter 4-digit PIN" maxlength="4">
-            <button onclick="validatePin()">Launch!</button>
-            <button onclick="teacher2()">Show Disclaimer</button>
-        </div>
-    </div>
-
-    <script>
-        function validatePin() {
-            const pin = document.getElementById('pinInput').value;
-            if (pin === '3541') { // Example PIN code
-                triggerBlurSwirl(); // Start blur swirl before opening link
-            } else {
-                alert('Invalid PIN. Please try again.');
-            }
-        }
-
-        function Teacher() {
-            alert("There is a disclaimer; it is not my fault!!!");
-        }
-
-        function teacher2() {
-            // Blur the background
-            document.querySelector('.wrapper').classList.add('blur');
-            // Create the popup
-            const popup = document.createElement('div');
-            popup.className = 'popup';
-            popup.innerHTML = `
-                <div class="popup-content">
-                    <h3>Disclaimer</h3>
-                    <p>Don't play this in class!!! If you do and you get in trouble, then it's not my fault!!!</p>
-                    <button class="close-button" onclick="closePopup()">Close</button>
-                </div>
-            `;
-            document.body.appendChild(popup);
-        }
-
-        function closePopup() {
-            // Remove blur from background
-            document.querySelector('.wrapper').classList.remove('blur');
-            // Remove the popup
-            const popup = document.querySelector('.popup');
-            if (popup) {
-                document.body.removeChild(popup);
-            }
-        }
-
-        function triggerBlurSwirl() {
-            // Blur the background
-            document.querySelector('.wrapper').classList.add('blur');
-            // Redirect after delay
-            setTimeout(openLink, 300); // Delay to allow swirl animation
-        }
-
-        function openLink() {
-            window.location.href = 'about:blank';
-            const newWindow = window.open('about:blank', '_blank');
-            newWindow.document.write(`
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <title>HomeWork 😏</title>
-                    <style>
-                        body { margin: 0; }
-                        iframe { width: 100vw; height: 100vh; border: none; }
-                    </style>
-                </head>
-                <body>
-                    <iframe src="https://snowstudentdev.github.io/main.html"></iframe>
-                </body>
-                </html>
-            `);
-            newWindow.document.close(); // Close the document to render the content
-        }
-    </script>
-</body>
-</html>
+function openLink() {
+    // Open a new window/tab
+    const newWindow = window.open('', '_blank');
+    // Write the basic HTML structure
+    newWindow.document.write(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <title>HomeWork 😏</title>
+            <style>
+                body { margin: 0; }
+                iframe { width: 100vw; height: 100vh; border: none; }
+            </style>
+        </head>
+        <body>
+            <iframe src="https://snowstudentdev.github.io/main.html"></iframe>
+        </body>
+        </html>
+    `);
+    newWindow.document.close(); // Close the document to render the content
+}
