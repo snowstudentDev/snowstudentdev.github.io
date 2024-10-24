@@ -9,7 +9,6 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: azure;
-            overflow: hidden; /* Prevent scrolling during blur effect */
         }
         .wrapper {
             display: flex;
@@ -21,15 +20,6 @@
         }
         .blur {
             filter: blur(4px);
-            animation: swirl 0.3s forwards;
-        }
-        @keyframes swirl {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
         }
         .login-container {
             text-align: center;
@@ -47,14 +37,13 @@
             box-sizing: border-box;
         }
         .login-container button {
-            padding: 8px; /* Smaller buttons */
+            padding: 10px;
             background-color: #007BFF;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             width: 100%;
-            transition: background-color 0.3s;
         }
         .login-container button:hover {
             background-color: #0056b3;
@@ -66,7 +55,7 @@
             background-color: #1abc9c;
             color: white;
             border: none;
-            padding: 8px 12px; /* Smaller size */
+            padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
@@ -92,7 +81,7 @@
         }
         .close-button {
             margin-top: 15px;
-            padding: 8px;
+            padding: 10px;
             background-color: #e74c3c;
             color: white;
             border: none;
@@ -117,7 +106,7 @@
         function validatePin() {
             const pin = document.getElementById('pinInput').value;
             if (pin === '3541') { // Example PIN code
-                triggerBlurSwirl(); // Start blur swirl before opening link
+                openLink();
             } else {
                 alert('Invalid PIN. Please try again.');
             }
@@ -153,16 +142,11 @@
             }
         }
 
-        function triggerBlurSwirl() {
-            // Blur the background
-            document.querySelector('.wrapper').classList.add('blur');
-            // Redirect after delay
-            setTimeout(openLink, 300); // Delay to allow swirl animation
-        }
-
         function openLink() {
-            // Open the desired URL directly in a new tab
+            // Open the new URL in a new tab
             window.open('https://snowstudentdev.github.io/main.html', '_blank');
+            // Close the current tab
+            window.close();
         }
     </script>
 </body>
