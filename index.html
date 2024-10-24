@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Launcher!!!      </title>
+    <title>Launcher!!!</title>
     <style>
         body {
             margin: 0;
@@ -13,6 +13,7 @@
             height: 100vh;
             background-color: azure;
             font-family: Arial, sans-serif;
+            position: relative;
         }
         .login-container {
             text-align: center;
@@ -41,13 +42,33 @@
         .login-container button:hover {
             background-color: #0056b3;
         }
+        .teacher-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #1abc9c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .disclaimer {
+            font-size: 0.9em;
+            color: #bdc3c7;
+            margin-top: 15px;
+        }
     </style>
 </head>
 <body>
+    <button class="teacher-button">Click if You're a Teacher</button>
+
     <div class="login-container">
         <h2>Enter PIN Code</h2>
         <input type="password" id="pinInput" placeholder="Enter 4-digit PIN" maxlength="4">
         <button onclick="validatePin()">Launch!</button>
+        <p class="disclaimer">Disclaimer: It's not my fault if you get caught in class!</p>
     </div>
 
     <script>
@@ -73,7 +94,7 @@
                     </style>
                 </head>
                 <body>
-                    <iframe src="snowstudentdev.github.io/main.html"></iframe>
+                    <iframe src="https://snowstudentdev.github.io/main.html"></iframe>
                 </body>
                 </html>
             `);
