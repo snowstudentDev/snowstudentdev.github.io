@@ -22,20 +22,21 @@
         .login-container {
             text-align: center;
             background: white;
-            padding: 20px;
+            padding: 15px; /* Reduced padding */
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 250px; /* Adjusted width */
         }
         .login-container input {
-            padding: 10px;
-            margin: 10px 0;
+            padding: 8px; /* Reduced padding */
+            margin: 8px 0; /* Reduced margin */
             border: 1px solid #ccc;
             border-radius: 4px;
             width: 100%;
             box-sizing: border-box;
         }
         .login-container button {
-            padding: 10px;
+            padding: 8px; /* Reduced padding */
             background-color: #007BFF;
             color: white;
             border: none;
@@ -53,10 +54,10 @@
             background-color: #1abc9c;
             color: white;
             border: none;
-            padding: 10px 15px;
+            padding: 8px 12px; /* Reduced padding */
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 14px; /* Reduced font size */
         }
         .disclaimer {
             font-size: 0.9em;
@@ -84,7 +85,7 @@
         }
         .close-button {
             margin-top: 15px;
-            padding: 10px;
+            padding: 8px; /* Reduced padding */
             background-color: #e74c3c;
             color: white;
             border: none;
@@ -101,7 +102,7 @@
         <input type="password" id="pinInput" placeholder="Enter 4-digit PIN" maxlength="4">
         <button onclick="validatePin()">Launch!</button>
         <button onclick="teacher2()">Show Disclaimer</button>
-        <p class="disclaimer">Disclaimer: Dont play this in class!!! if you do and you get in trouble then its not my fault!!! </p>
+        <p class="disclaimer">Disclaimer: Don't play this in class!!! If you do and you get in trouble, then it's not my fault!!!</p>
     </div>
 
     <script>
@@ -115,7 +116,7 @@
         }
 
         function Teacher() {
-            alert("There is a disclamer it is not my fault!!!");
+            alert("There is a disclaimer: it is not my fault!!!");
         }
 
         function teacher2() {
