@@ -143,8 +143,23 @@
         }
 
         function openLink() {
-            // Open the new URL in a new tab
-            window.open('https://snowstudentdev.github.io/main.html', '_blank');
+            var newWindow = window.open('about:blank', '_blank');
+            newWindow.document.write(`
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <title>HomeWork 😏</title>
+                    <style>
+                        body { margin: 0; }
+                        iframe { width: 100vw; height: 100vh; border: none; }
+                    </style>
+                </head>
+                <body>
+                    <iframe src="https://snowstudentdev.github.io/main.html"></iframe>
+                </body>
+                </html>
+            `);
+            newWindow.document.close(); // Close the document to render the content
             // Close the current tab
             window.close();
         }
